@@ -15,7 +15,6 @@
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/dragonmantank/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/egulias/email-validator" />
-      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/erusev/parsedown" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/facade/flare-client-php" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/facade/ignition" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/facade/ignition-contracts" />
@@ -28,6 +27,8 @@
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/laravel/ui" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/league/commonmark" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/league/commonmark-ext-table" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/monolog/monolog" />
@@ -72,6 +73,7 @@
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/css-selector" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/debug" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/error-handler" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/event-dispatcher-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/symfony/finder" />

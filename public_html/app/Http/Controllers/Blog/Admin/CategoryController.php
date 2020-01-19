@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Blog;
+namespace App\Http\Controllers\Blog\Admin;
 
-use App\Models\BlogPost;
+use App\Http\Controllers\Blog\BaseController;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
-class PostController extends BaseController
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class PostController extends BaseController
      */
     public function index()
     {
-        $items = BlogPost::all();
+        $category = BlogCategory::paginate(5);
 
-        return view('blog.posts.index', compact('items'));
+        return $category;
     }
 
     /**

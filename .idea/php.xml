@@ -65,7 +65,6 @@
       <path value="$PROJECT_DIR$/public_html/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/public_html/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/public_html/vendor/phpoption/phpoption" />
-      <path value="$PROJECT_DIR$/public_html/vendor/erusev/parsedown" />
       <path value="$PROJECT_DIR$/public_html/vendor/facade/ignition" />
       <path value="$PROJECT_DIR$/public_html/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/public_html/vendor/dragonmantank/cron-expression" />
@@ -88,6 +87,9 @@
       <path value="$PROJECT_DIR$/public_html/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/public_html/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/public_html/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/public_html/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/public_html/vendor/league/commonmark-ext-table" />
+      <path value="$PROJECT_DIR$/public_html/vendor/symfony/error-handler" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
