@@ -56,14 +56,14 @@ class CategoryController extends BaseController
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $item = BlogCategory::findOrFail($id);
         $categoryList = BlogCategory::all();
 
-        return view('blog.admin.category.edit', ['item' => $categoryList]);
+        return view('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
