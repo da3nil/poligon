@@ -47,6 +47,12 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="description">Описание</label>
+                            <textarea name="description" id="description" class="form-control" rows="3">
+                                {{ $item->description }}
+                            </textarea>
+                        </div>
                     </div>
                 </div>
             </div>
