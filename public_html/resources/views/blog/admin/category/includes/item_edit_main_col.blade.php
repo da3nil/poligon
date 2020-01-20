@@ -15,7 +15,7 @@
                     <div class="tab-pane active" id="maindata" role="tabpanel">
                         <div class="form-group">
                             <label for="title">Заголовок</label>
-                            <input name="title" value="{{ $item->title }}"
+                            <input name="title" value="{{ old('title', $item->title) }}"
                                    type="text"
                                    id="title"
                                    class="form-control"
@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <label for="slug">Идентификатор</label>
-                            <input name="slug" value="{{ $item->slug }}"
+                            <input name="slug" value="{{ old('slug', $item->slug) }}"
                                    type="text"
                                    id="slug"
                                    class="form-control">
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="description">Описание</label>
                             <textarea name="description" id="description" class="form-control" rows="3">
-                                {{ $item->description }}
+                                {{ old('description', $item->description)}}
                             </textarea>
                         </div>
                     </div>

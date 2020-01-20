@@ -75,7 +75,6 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-//        dd(__METHOD__, $request->all(), $id);
         $item = BlogCategory::find($id);
         if (empty($item)) {
             return back()
@@ -88,11 +87,11 @@ class CategoryController extends BaseController
 
         if ($result) {
             return redirect()
-                ->route('blog.admin.categories.edit')
-                ->with(['msg' => 'Успешно сохранено']);
+                ->route('blog.admin.categories.edit', $id)
+                ->with(['success' => 'Успешно сохранено']);
         } else {
             return back()
-                ->withErrors(['msg' => 'Успешно сохранено'])
+                ->withErrors(['msg' => 'Ошибка сохранения'])
                 ->withInput();
         }
     }
