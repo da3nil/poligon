@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="parent_id">Родитель</label>
                             <select name="parent_id"
-                                    placeholder="Выберете котегорию"
+                                    placeholder="Выберете категорию"
                                     id="parent_id"
                                     class="form-control"
                                     required>
@@ -49,9 +49,11 @@
 
                         <div class="form-group">
                             <label for="description">Описание</label>
-                            <textarea name="description" id="description" class="form-control" rows="3">
-                                {{ old('description', $item->description)}}
-                            </textarea>
+                            <textarea
+                                name="description"
+                                id="description"
+                                class="form-control"
+                                rows="3">{{ old('description', $item->description)}}</textarea>
                         </div>
                     </div>
                 </div>

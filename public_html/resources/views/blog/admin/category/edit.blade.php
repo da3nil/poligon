@@ -36,7 +36,7 @@
             @endif
 
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     @include('blog.admin.category.includes.item_edit_main_col')
                 </div>
                 <div class="col-md-3">
