@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Blog\BaseController;
+use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
-use Illuminate\Http\Request;
+use Str;
 
 class CategoryController extends BaseController
 {
@@ -18,7 +19,7 @@ class CategoryController extends BaseController
     {
         $paginator = BlogCategory::paginate(5);
 
-        return view('blog.admin.category.index', ['paginator' => $paginator]);
+        return view('blog.admin.categories.index', ['paginator' => $paginator]);
     }
 
     /**
@@ -28,7 +29,10 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        //
+        $item = new BlogCategory();
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -37,9 +41,25 @@ class CategoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCategoryCreateRequest $request)
     {
-        //
+        $data = $request->input();
+
+        if (empty($data['slug'])) {
+            $data['slug'] = Str::slug($data['title']);
+        }
+
+        $item = (new BlogCategory())->create($data);
+
+        if ($item) {
+            return redirect()
+                ->route('blog.admin.categories.edit', [$item->id])
+                ->with(['success' => 'Успешно сохранено']);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
+        }
     }
 
     /**
@@ -64,7 +84,7 @@ class CategoryController extends BaseController
         $item = BlogCategory::findOrFail($id);
         $categoryList = BlogCategory::all();
 
-        return view('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
+        return view('blog.admin.categories.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
