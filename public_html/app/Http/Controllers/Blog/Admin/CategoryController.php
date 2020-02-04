@@ -2,22 +2,35 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-use App\Http\Controllers\Blog\BaseController;
+use App\Http\Controllers\Blog\Admin\BaseController;
 use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
+use App\Repositories\BlogCategoryRepository;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Str;
 
 class CategoryController extends BaseController
 {
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
-        $paginator = BlogCategory::paginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
 
         return view('blog.admin.categories.index', ['paginator' => $paginator]);
     }
@@ -25,12 +38,12 @@ class CategoryController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
         $item = new BlogCategory();
-        $categoryList = BlogCategory::all();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
@@ -38,8 +51,8 @@ class CategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param BlogCategoryCreateRequest $request
+     * @return RedirectResponse
      */
     public function store(BlogCategoryCreateRequest $request)
     {
@@ -65,8 +78,8 @@ class CategoryController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -76,13 +89,20 @@ class CategoryController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param int $id
+     * @return Factory|View
      */
     public function edit($id)
     {
-        $item = BlogCategory::findOrFail($id);
-        $categoryList = BlogCategory::all();
+//        $item = BlogCategory::findOrFail($id);
+//        $categoryList = BlogCategory::all();
+
+        $item = $this->blogCategoryRepository->getEdit($id);
+        if (empty($item)) {
+            abort(404);
+        }
+
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
@@ -90,13 +110,13 @@ class CategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param BlogCategoryUpdateRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        $item = BlogCategory::find($id);
+        $item = $this->blogCategoryRepository->getEdit($id);
         if (empty($item)) {
             return back()
                 ->withErrors(['msg' => "Запись id=[$id] не найдена"])
@@ -120,8 +140,8 @@ class CategoryController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function destroy($id)
     {
