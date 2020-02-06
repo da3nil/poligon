@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
+//This class
 class BlogCategoriesTableSeeder extends Seeder
 {
     /**
