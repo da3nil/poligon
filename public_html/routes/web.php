@@ -27,9 +27,15 @@ Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function() {
 
 // Админка блога
 Route::group(['namespace' => 'Blog\Admin', 'prefix' => 'admin/blog'], function () {
+    // BlogCategory
     Route::resource('categories', 'CategoryController')
         ->only(['index', 'edit', 'store', 'update', 'create'])
         ->names('blog.admin.categories');
+
+    // BlogPost
+    Route::resource('posts', 'PostController')
+        ->except(['show'])
+        ->names('blog.admin.posts');
 });
 
 //Route::resource('rest', 'RestTestController')->names('restTest');

@@ -20,7 +20,6 @@ class CategoryController extends BaseController
     {
         parent::__construct();
         $this->blogCategoryRepository = app(BlogCategoryRepository::class);
-
     }
 
     /**
@@ -31,7 +30,6 @@ class CategoryController extends BaseController
     public function index()
     {
         $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
-
         return view('blog.admin.categories.index', ['paginator' => $paginator]);
     }
 
@@ -44,7 +42,6 @@ class CategoryController extends BaseController
     {
         $item = new BlogCategory();
         $categoryList = $this->blogCategoryRepository->getForComboBox();
-
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
