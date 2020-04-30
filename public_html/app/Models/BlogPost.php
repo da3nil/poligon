@@ -47,4 +47,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BlogPost extends Model
 {
     use SoftDeletes;
+
+    public function category()
+    {
+        // Статья принаджелит категории
+        return $this->belongsTo(BlogCategory::class);
+    }
+
+    public function user()
+    {
+        // Статья принадлежит пользователю
+        return $this->belongsTo(User::class);
+    }
 }

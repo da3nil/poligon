@@ -88,7 +88,6 @@
       <path value="$PROJECT_DIR$/public_html/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/public_html/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/public_html/vendor/league/commonmark" />
-      <path value="$PROJECT_DIR$/public_html/vendor/league/commonmark-ext-table" />
       <path value="$PROJECT_DIR$/public_html/vendor/symfony/error-handler" />
       <path value="$PROJECT_DIR$/public_html/vendor/justinrainbow/json-schema" />
       <path value="$PROJECT_DIR$/public_html/vendor/doctrine/dbal" />
@@ -99,6 +98,8 @@
       <path value="$PROJECT_DIR$/public_html/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/public_html/vendor/barryvdh/laravel-ide-helper" />
       <path value="$PROJECT_DIR$/public_html/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/public_html/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/public_html/vendor/maximebf/debugbar" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

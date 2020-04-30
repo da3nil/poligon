@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/storage" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/barryvdh/laravel-ide-helper" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/barryvdh/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/composer" />
@@ -34,8 +35,8 @@
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/laravel/ui" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/league/commonmark" />
-      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/league/commonmark-ext-table" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/maximebf/debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/public_html/vendor/myclabs/deep-copy" />

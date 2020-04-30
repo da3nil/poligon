@@ -15,6 +15,34 @@ class BlogPostRepository extends CoreRepository
     }
 
     /**
+     * Получить список статей для вывода в списке (Админка)
+     *
+     * @return LengthAwarePaginator
+     */
+    public function getAllWithPaginate()
+    {
+        $columns = [
+            'id',
+            'category_id',
+            'user_id',
+            'slug',
+            'title',
+            'is_published',
+            'published_at',
+        ];
+
+        /** @var LengthAwarePaginator $result */
+        $result = $this->startConditions()
+            ->select($columns)
+            ->orderBy('id', 'DESC')
+            ->with(['category', 'user'])
+            ->paginate(25);
+
+
+        return $result;
+    }
+
+    /**
      * Получить модель для редактирования в админке.
      *
      * @param int $id
@@ -24,45 +52,5 @@ class BlogPostRepository extends CoreRepository
     public function getEdit($id)
     {
         return $this->startConditions()->find($id);
-    }
-
-    /**
-     * Получить список категорий для вывода в выпадающем списке.
-     *
-     * @return Collection
-     */
-    public function getForComboBox()
-    {
-        $columns = implode(', ', [
-            'id',
-            'CONCAT (id, ". ", title) AS id_title'
-        ]);
-
-        /** @var Collection $result */
-        $result = $this
-        ->startConditions()
-        ->selectRaw($columns)
-            ->toBase()
-            ->get();
-
-        return $result;
-    }
-
-    /**
-     * Получить категории для вывода пагинатором
-     *
-     * @param int|null $perPage
-     * @return LengthAwarePaginator
-     */
-    public function getAllWithPaginate($perPage = null) {
-        $columns = ['id', 'title', 'parent_id'];
-
-        /** @var LengthAwarePaginator $result */
-        $result = $this
-            ->startConditions()
-            ->select($columns)
-            ->paginate($perPage);
-
-        return $result;
     }
 }
