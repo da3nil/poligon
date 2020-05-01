@@ -48,6 +48,15 @@ class BlogPost extends Model
 {
     use SoftDeletes;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+       'title', 'slug', 'excerpt', 'category_id', 'content_raw', 'is_published', 'published_at', 'user_idзрз'
+    ];
+
     public function category()
     {
         // Статья принаджелит категории
