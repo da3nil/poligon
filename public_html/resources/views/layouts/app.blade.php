@@ -33,7 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="item">
+                            <a class="nav-link" href="{{ route('blog.posts.index') }}">Статьи</a>
+                        </li>
+                        <li class="item">
+                            <a class="nav-link" href="{{ route('blog.admin.posts.index') }}">Статьи (админка)</a>
+                        </li>
+                        <li class="item">
+                            <a class="nav-link" href="{{ route('blog.admin.categories.index') }}">Категории (админка)</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -20,6 +20,19 @@ class BlogPostObserver
     }
 
     /**
+     * Обработка ПЕРЕД созданием записи
+     *
+     * @param BlogPost $blogPost
+     */
+    public function creating(BlogPost $blogPost)
+    {
+        $this->setPublishedAt($blogPost);
+        $this->setSlug($blogPost);
+        $this->setHtml($blogPost);
+        $this->setUser($blogPost);
+    }
+
+    /**
      * Если дата публикации не установлена и происходит установка флага - Опубликовано,
      * то устанавливаем дату публикации на текующую.
      *
@@ -42,6 +55,24 @@ class BlogPostObserver
         if (empty($blogPost->slug)) {
             $blogPost->slug = \Str::slug($blogPost->title);
         }
+    }
+
+    /**
+     * Установка значения поля content_html относительно поля content_raw
+     *
+     * @param BlogPost $blogPost
+     */
+    protected function setHtml(BlogPost $blogPost)
+    {
+        if ($blogPost->isDirty('content_raw')) {
+            // TODO: Тут должна быть генерация markdown -> html
+            $blogPost->content_html = $blogPost->content_raw;
+        }
+    }
+
+    protected function setUser(BlogPost $blogPost)
+    {
+        $blogPost->user_id = auth()->id() ?? BlogPost::UNKNOWN_USER;
     }
 
     /**

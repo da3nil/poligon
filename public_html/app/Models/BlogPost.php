@@ -43,10 +43,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\BlogPost withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\BlogPost withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Models\BlogCategory $category
+ * @property-read \App\Models\User $user
  */
 class BlogPost extends Model
 {
     use SoftDeletes;
+
+    const UNKNOWN_USER = 1;
 
     /**
      * The attributes that are mass assignable.
@@ -54,7 +58,7 @@ class BlogPost extends Model
      * @var array
      */
     protected $fillable = [
-       'title', 'slug', 'excerpt', 'category_id', 'content_raw', 'is_published', 'published_at', 'user_idзрз'
+       'title', 'slug', 'excerpt', 'category_id', 'content_raw', 'is_published', 'published_at',
     ];
 
     public function category()

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogPostStoreRequest;
+use App\Models\BlogPost;
 use App\Repositories\BlogCategoryRepository;
 use App\Repositories\BlogPostRepository;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -43,22 +46,38 @@ class PostController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
-     * @return void
+     * @return view
      */
     public function create()
     {
-        //
+        $item = new BlogPost();
+
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+
+        return view('blog.admin.posts.edit', compact('item', 'categoryList'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param BlogPostStoreRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(BlogPostStoreRequest $request)
     {
-        //
+        $item = new BlogPost();
+        $data = $request->all();
+        $result = $item->fill($data)->save();
+
+        if ($result){
+            return redirect()
+                ->route('blog.admin.posts.edit', [$item->id])
+                ->with(['success' => 'Успешно создано']);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Ошибка создания'])
+                ->withInput();
+        }
     }
 
     /**
@@ -95,7 +114,7 @@ class PostController extends BaseController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -108,15 +127,6 @@ class PostController extends BaseController
         }
 
         $data = $request->all();
-
-//        Переехало в обсервер \App\Observers\BlogPostObserver.php
-//        if (empty($data['slug'])) {
-//            $data['slug'] = \Str::slug($data['title']);
-//        }
-//
-//        if (empty($item->published_at) && $data['is_published']) {
-//            $data['published_at'] = Carbon::now();
-//        }
 
         $result = $item->update($data);
 

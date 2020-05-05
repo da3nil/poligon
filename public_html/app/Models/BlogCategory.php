@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -33,10 +34,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\BlogCategory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\BlogCategory withoutTrashed()
+ * @property-read string $parent_title
+ * @property-read string $parentTitle
+ * @property-read \App\Models\BlogCategory $parentCategory
  */
 class BlogCategory extends Model
 {
     use SoftDeletes;
+
+    const ROOT = 1;
 
     protected $fillable
         = [
@@ -45,4 +51,36 @@ class BlogCategory extends Model
             'parent_id',
             'description'
         ];
+
+    /**
+     * Получить родительскую категорию
+     *
+     * @return BelongsTo
+     */
+    public function parentCategory()
+    {
+        return $this->belongsTo(BlogCategory::class, 'parent_id', 'id');
+    }
+
+    /**
+     * Пример аксессуара (Accessor)
+     *
+     * @return string
+     */
+    public function getParentTitleAttribute()
+    {
+        $title = $this->parentCategory->title ?? (($this->isRoot()) ? 'Корень' : '???');
+
+        return $title;
+    }
+
+    /**
+     * Является ли текущий объект корневым
+     *
+     * @return bool
+     */
+    private function isRoot()
+    {
+        return $this->id === BlogCategory::ROOT;
+    }
 }
